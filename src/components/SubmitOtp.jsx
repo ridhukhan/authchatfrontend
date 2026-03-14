@@ -20,7 +20,7 @@ e.preventDefault()
          dataToSend={otp,phone,verificationMethod}
     }
 try {
-  const {data}=axios.post("http://localhost:4000/api/v1/user/otp-verification",dataToSend,{withCredentials:true})
+  const {data}=axios.post("https://mernauth-06db.onrender.com/api/v1/user/otp-verification",dataToSend,{withCredentials:true})
 console.log(data)
 toast.success("verify successfully")
 navigate("/login")

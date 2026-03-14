@@ -13,7 +13,7 @@ const Resetpassword = () => {
     e.preventDefault()
     try {
       await axios.put(
-        `http://localhost:4000/api/v1/user/password/reset/${token}`,
+        `https://mernauth-06db.onrender.com/api/v1/user/password/reset/${token}`,
         { password, confirmPassword },
         { withCredentials: true }
       )

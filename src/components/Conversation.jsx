@@ -17,7 +17,7 @@ const {socket}=useSocket()
     const fetchMessages = async () => {
       try {
         const { data } = await axios.get(
-          `http://localhost:4000/api/v1/user/getMessage/${id}`,
+          `https://mernauth-06db.onrender.com/api/v1/user/getMessage/${id}`,
           { withCredentials: true }
         )
         setMessages(data.messages)

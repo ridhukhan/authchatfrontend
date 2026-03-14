@@ -15,7 +15,7 @@ const Register = () => {
   const handleSubmit = async (e) => {
     e.preventDefault()
     try {
-      const data = await axios.post("http://localhost:4000/api/v1/user/register", {
+      const data = await axios.post("https://mernauth-06db.onrender.com/api/v1/user/register", {
         username, email, password, phone: `+880${phone}`, verificationMethod
       })
       toast.success("we send a code your contact number")

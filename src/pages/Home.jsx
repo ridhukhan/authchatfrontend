@@ -26,7 +26,6 @@ const Home = () => {
       fontFamily: "Arial"
     }}>
 
-      {/* Header */}
       <div style={{
         backgroundColor: "#075e54",
         padding: "15px 25px",
@@ -41,7 +40,6 @@ const Home = () => {
 
         {isAuthenticated && (
           <div style={{ display: "flex", alignItems: "center", gap: "15px" }}>
-            {/* Avatar */}
             <div style={{
               width: "38px",
               height: "38px",
@@ -64,7 +62,6 @@ const Home = () => {
         )}
       </div>
 
-      {/* Body */}
       <div style={{
         maxWidth: "500px",
         margin: "30px auto",

@@ -6,13 +6,13 @@ import { useSocket } from '../context/SocketContext'
 const AllUsers = () => {
   const [users, setUsers] = useState([])
   const navigate = useNavigate()
-  const { onlineUsers } = useSocket()  // ✅ online users নাও
+  const { onlineUsers } = useSocket()  
 
   useEffect(() => {
     const fetchUsers = async () => {
       try {
         const { data } = await axios.get(
-          "http://localhost:4000/api/v1/user/users",
+          "https://mernauth-06db.onrender.com/api/v1/user/users",
           { withCredentials: true }
         )
         setUsers(data.users)
@@ -26,7 +26,6 @@ const AllUsers = () => {
   return (
     <div style={{ maxWidth: "400px", margin: "20px auto", fontFamily: "Arial" }}>
 
-      {/* Header */}
       <div style={{
         backgroundColor: "#075e54",
         padding: "15px 20px",
@@ -38,7 +37,6 @@ const AllUsers = () => {
         💬 Chats
       </div>
 
-      {/* User List */}
       <div style={{
         backgroundColor: "white",
         borderRadius: "0 0 10px 10px",
@@ -60,7 +58,6 @@ const AllUsers = () => {
             onMouseEnter={(e) => e.currentTarget.style.backgroundColor = "#f5f5f5"}
             onMouseLeave={(e) => e.currentTarget.style.backgroundColor = "white"}
           >
-            {/* Avatar + Online indicator */}
             <div style={{ position: "relative" }}>
               <div style={{
                 width: "45px",
@@ -77,7 +74,6 @@ const AllUsers = () => {
                 {user.username[0].toUpperCase()}
               </div>
 
-              {/* ✅ Online হলে সবুজ dot দেখাবে */}
               {onlineUsers.includes(user._id) && (
                 <div style={{
                   position: "absolute",
@@ -92,7 +88,6 @@ const AllUsers = () => {
               )}
             </div>
 
-            {/* Name + Online/Offline text */}
             <div>
               <p style={{ margin: 0, fontWeight: "bold", fontSize: "16px", color: "#333" }}>
                 {user.username}
