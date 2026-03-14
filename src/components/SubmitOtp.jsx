@@ -15,9 +15,9 @@ const submithandler =async(e)=>{
 e.preventDefault()
   let dataToSend={}
     if(verificationMethod==="email"){
-        dataToSend={otp,email,verificationMethod}
+        dataToSend={otp:Number(otp),email,verificationMethod}
     }else{
-         dataToSend={otp,phone,verificationMethod}
+         dataToSend={otp:Number(otp),phone,verificationMethod}
     }
 try {
   const {data}= await axios.post("https://mernauth-06db.onrender.com/api/v1/user/otp-verification",dataToSend,{withCredentials:true})
