@@ -52,7 +52,7 @@ const Home = () => {
               fontWeight: "bold",
               fontSize: "16px"
             }}>
-              {user.username[0].toUpperCase()}
+              {user?.username[0].toUpperCase()}
             </div>
             <span style={{ color: "white", fontWeight: "bold" }}>
               {user.username}

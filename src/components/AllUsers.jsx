@@ -72,7 +72,7 @@ const AllUsers = () => {
                 fontSize: "18px",
                 fontWeight: "bold",
               }}>
-                {user.username[0].toUpperCase()}
+                {user?.username?.[0]?.toUpperCase()}
               </div>
 
               {onlineUsers.includes(user._id) && (
