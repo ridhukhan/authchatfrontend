@@ -6,7 +6,7 @@ import SubmitOtp from "./components/SubmitOtp";
 import{ Toaster} from "sonner"
 import Login from "./components/Login";
 import Logout from "./components/Logout";
-import ForgotPassword from "./components/forgotPassword";
+import ForgotPassword from "./components/ForgotPassword";
 import Resetpassword from "./components/Resetpassword";
 import ProtectRoute from "./components/ProtectRoute";
 import Conversation from "./components/Conversation";
