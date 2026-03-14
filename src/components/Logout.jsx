@@ -10,14 +10,14 @@ const Logout = () => {
   const handleLogout = async (e) => {
     e.preventDefault()
     try {
-      const { data } = await axios.get(
+    await axios.get(
         "https://mernauth-06db.onrender.com/api/v1/user/logout",
         { withCredentials: true }
       )
+      toast.success("quit success")
+
       setUser(false)
       setIsAuthenticated(false)
-      toast.success("quit success")
-      console.log(data)
       navigate("/login")
     } catch (error) {
       toast.error(error.response?.data?.message)
