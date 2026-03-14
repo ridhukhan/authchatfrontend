@@ -22,6 +22,8 @@ e.preventDefault()
 try {
   const {data}= await axios.post("https://mernauth-06db.onrender.com/api/v1/user/otp-verification",dataToSend,{withCredentials:true})
 console.log(data)
+console.log("otp:", otp)
+console.log("dataToSend:", dataToSend)
 toast.success("verify successfully")
 navigate("/login")
 } catch (error) {
