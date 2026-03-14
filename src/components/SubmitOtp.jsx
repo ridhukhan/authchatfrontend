@@ -10,27 +10,33 @@ const SubmitOtp = () => {
   const navigate = useNavigate();
 
   const submithandler = async (e) => {
-    e.preventDefault();
-    if (!otp) return toast.error("Please enter OTP");
+  e.preventDefault();
+  
+  if (!otp) return toast.error("অনুগ্রহ করে OTP দিন");
 
-    const dataToSend = {
-      otp: otp.trim(), // String হিসেবে পাঠিয়ে ব্যাকএন্ডে তুলনা করা নিরাপদ
-      verificationMethod,
-      ...(verificationMethod === "email" ? { email } : { phone })
-    };
-
-    try {
-      const { data } = await axios.post(
-        "https://mernauth-06db.onrender.com/api/v1/user/otp-verification",
-        dataToSend,
-        { withCredentials: true }
-      );
-      toast.success("Verified successfully");
-      navigate("/login");
-    } catch (error) {
-      toast.error(error.response?.data?.message || "Verification failed");
-    }
+  // ডাটা পাঠানোর আগে নিশ্চিত হওয়া
+  const dataToSend = {
+    otp: otp.trim(), // সরাসরি স্ট্রিং পাঠান, ব্যাকএন্ডে '!=' সামলে নেবে
+    verificationMethod,
+    ...(verificationMethod === "email" ? { email } : { phone })
   };
+
+  try {
+    const { data } = await axios.post(
+      "https://mernauth-06db.onrender.com/api/v1/user/otp-verification",
+      dataToSend,
+      { withCredentials: true }
+    );
+    
+    toast.success(data.message);
+    navigate("/login");
+  } catch (error) {
+    // এরর মেসেজটি সুন্দর করে দেখানো
+    const message = error.response?.data?.message || "ভেরিফিকেশন ব্যর্থ হয়েছে";
+    toast.error(message);
+    console.log("Error details:", message);
+  }
+};
 
   return (
     <div style={{ padding: "20px" }}>
