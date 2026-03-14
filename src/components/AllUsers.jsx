@@ -16,6 +16,7 @@ const AllUsers = () => {
           { withCredentials: true }
         )
         setUsers(data.users)
+        console.log(data)
       } catch (error) {
         console.error(error)
       }

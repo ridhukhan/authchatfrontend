@@ -16,10 +16,8 @@ export const SocketProvider = ({ children }) => {
         withCredentials: true
       })
 
-      // নিজেকে online বলো
       newSocket.emit("userOnline", user._id)
 
-      // Online users update হলে
       newSocket.on("onlineUsers", (users) => {
         setOnlineUsers(users)
       })
