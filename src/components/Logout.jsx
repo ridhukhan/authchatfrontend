@@ -15,10 +15,10 @@ const Logout = () => {
         { withCredentials: true }
       )
       toast.success("quit success")
+      navigate("/login")
 
       setUser(false)
       setIsAuthenticated(false)
-      navigate("/login")
     } catch (error) {
       toast.error(error.response?.data?.message)
     }
