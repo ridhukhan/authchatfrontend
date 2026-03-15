@@ -10,9 +10,13 @@ const Logout = () => {
   const handleLogout = async (e) => {
     e.preventDefault()
     try {
+      const token = localStorage.getItem("token")
     await axios.get(
         "https://mernauth-06db.onrender.com/api/v1/user/logout",
-        { withCredentials: true }
+        { withCredentials: true,
+          headers: { Authorization: token ? `Bearer ${token}` : "" } 
+          
+         }
       )
        localStorage.removeItem("token") 
        setUser(null)
