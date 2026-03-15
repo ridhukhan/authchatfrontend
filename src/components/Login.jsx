@@ -9,9 +9,10 @@ const Login = () => {
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
   const navigate = useNavigate()
-
+const [loading,setLoading]=useState(false)
   const handlesubmit = async (e) => {
     e.preventDefault()
+    setLoading(true)
     try {
       const { data } = await axios.post(
         "https://mernauth-06db.onrender.com/api/v1/user/login",
@@ -26,7 +27,7 @@ const Login = () => {
     } catch (error) {
       console.log(error.response?.data?.message)
       toast.error(error.response?.data?.message)
-    }
+    }finally{setLoading(false)}
   }
 
   return (
@@ -102,8 +103,9 @@ const Login = () => {
             fontSize: "16px",
             fontWeight: "bold",
             cursor: "pointer",
-          }}>
-            LOGIN
+          }} disabled={loading}>
+        {loading?"wait..":" Login"}
+
           </button>
 
           <p style={{ textAlign: "center", fontSize: "14px", color: "#666", margin: 0 }}>
@@ -112,7 +114,7 @@ const Login = () => {
               color: "#075e54",
               fontWeight: "bold",
               textDecoration: "none"
-            }}>
+            }} >
               Register
             </Link>
           </p>

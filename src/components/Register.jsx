@@ -11,9 +11,10 @@ const Register = () => {
   const [password, setPassword] = useState("")
   const navigate = useNavigate()
   const [verificationMethod, setVerificationMethod] = useState("email")
-
+const [loading,setLoading]=useState(false)
   const handleSubmit = async (e) => {
     e.preventDefault()
+    setLoading(true)
     try {
       const data = await axios.post("https://mernauth-06db.onrender.com/api/v1/user/register", {
         username, email, password, phone: `+880${phone}`, verificationMethod
@@ -26,6 +27,8 @@ const Register = () => {
     } catch (error) {
       toast.error(error.response?.data?.message)
       console.log(error.response?.data?.message)
+    }finally{
+      setLoading(false)
     }
   }
 
@@ -168,8 +171,8 @@ const Register = () => {
             fontWeight: "bold",
             cursor: "pointer",
             marginTop: "5px"
-          }}>
-            REGISTER
+          }} disabled={loading}>
+           {loading? "submitting...":" REGISTER"}
           </button>
 
           <p style={{ textAlign: "center", fontSize: "14px", color: "#666", margin: 0 }}>

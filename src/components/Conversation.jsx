@@ -13,7 +13,7 @@ const Conversation = () => {
   const latest = useRef(null)
   const { user: me } = useUser()  
         const token = localStorage.getItem("token")
-
+const [loading,setLoading]=useState(false)
 const {socket}=useSocket()
   useEffect(() => {
     const fetchMessages = async () => {
@@ -47,6 +47,7 @@ useEffect(()=>{
 
   const handleSubmit = async (e) => {
     e.preventDefault()
+    setLoading(true)
     await axios.post(
       `https://mernauth-06db.onrender.com/api/v1/user/sendMessage/${id}`,
       { message: text },
@@ -63,6 +64,7 @@ useEffect(()=>{
     })
     setMessages([...messages, { message: text, _id: Date.now(), sender: me._id }])
     setText("")
+    setLoading(false)
   }
 
  
@@ -143,8 +145,17 @@ useEffect(()=>{
           height: "40px",
           cursor: "pointer",
           fontSize: "18px"
-        }}>
-          ➤
+        }} disabled={loading}>
+      {loading ? (
+    <div style={{
+      width: "18px",
+      height: "18px",
+      border: "2px solid white",
+      borderTop: "2px solid transparent",
+      borderRadius: "50%",
+      animation: "spin 0.8s linear infinite"
+    }} />
+  ) : "➤"}
         </button>
       </form>
     </div>
