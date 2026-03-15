@@ -1,8 +1,15 @@
+import { useEffect } from "react"
 import AllUsers from "../components/AllUsers.jsx"
 import Logout from "../components/Logout.jsx"
 import { useUser } from "../context/AuthContext.jsx"
+import { useNotification } from "../hooks/useNotification.js"
 
 const Home = () => {
+ const {requestPermission}= useNotification()
+
+ useEffect(()=>{
+  requestPermission()
+ },[])
   const { user, isAuthenticated, loading } = useUser()
 
   if (loading) {

@@ -3,8 +3,10 @@ import { useEffect, useRef, useState } from 'react'
 import { useLocation, useParams } from 'react-router-dom'
 import { useUser } from '../context/AuthContext'
 import { useSocket } from '../context/SocketContext'
+import { useNotification } from '../hooks/useNotification'
 
 const Conversation = () => {
+ const {showNotification}= useNotification()
   const location = useLocation()
   const { user } = location.state
   const [text, setText] = useState("")
@@ -36,6 +38,13 @@ useEffect(()=>{
   if(socket){
     socket.on("newMessage",(msg)=>{
       setMessages((prev)=>[...prev,msg])
+
+      if(document.hidden){
+        showNotification(
+          "নতুন Message! 🕊️",
+          msg.message
+        )
+      }
     })
   }
   return ()=>socket?.off("newMessage")
