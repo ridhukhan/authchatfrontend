@@ -1,0 +1,47 @@
+/* index.css */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f0f2f5;
+  /* mobile swipe e shore jaowa band korbe */
+  overscroll-behavior: none;
+  overflow-x: hidden;
+  touch-action: pan-y;
+}
+
+/* সব page er main container */
+.container {
+  width: 100%;
+  max-width: 420px;
+  margin: 0 auto;
+  padding: 0 16px;
+}
+
+/* Mobile responsive */
+@media (max-width: 480px) {
+  /* সব form card mobile e full width */
+  div[style*="maxWidth: 420px"],
+  div[style*="max-width: 420px"] {
+    max-width: 100% !important;
+    margin: 0 !important;
+    border-radius: 0 !important;
+    min-height: 100vh !important;
+    padding: 30px 20px !important;
+  }
+
+  /* Input গুলো mobile e ভালো দেখাবে */
+  input {
+    font-size: 16px !important; /* zoom band করবে iOS এ */
+  }
+
+  /* Button গুলো mobile e বড় দেখাবে */
+  button {
+    min-height: 44px;
+  }
+}
