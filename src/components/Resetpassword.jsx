@@ -12,11 +12,12 @@ const Resetpassword = () => {
   const resethandler = async (e) => {
     e.preventDefault()
     try {
-      await axios.put(
+    const {data}=  await axios.put(
         `https://mernauth-06db.onrender.com/api/v1/user/password/reset/${token}`,
         { password, confirmPassword },
         { withCredentials: true }
       )
+      localStorage.setItem("token", data.token)
       toast.success("password reset successfully")
       navigate("/login")
     } catch (error) {

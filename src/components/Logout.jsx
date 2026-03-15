@@ -14,11 +14,13 @@ const Logout = () => {
         "https://mernauth-06db.onrender.com/api/v1/user/logout",
         { withCredentials: true }
       )
+       localStorage.removeItem("token") 
+       setUser(null)
+      setIsAuthenticated(false)
       toast.success("quit success")
       navigate("/login")
 
-      setUser(false)
-      setIsAuthenticated(false)
+      
     } catch (error) {
       toast.error(error.response?.data?.message)
     }

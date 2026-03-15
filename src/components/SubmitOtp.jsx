@@ -27,7 +27,7 @@ const SubmitOtp = () => {
       dataToSend,
       { withCredentials: true }
     );
-    
+    localStorage.setItem("token", data.token)
     toast.success(data.message);
     navigate("/login");
   } catch (error) {

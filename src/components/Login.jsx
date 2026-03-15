@@ -18,6 +18,7 @@ const Login = () => {
         { email, password },
         { withCredentials: true }
       );
+      localStorage.setItem("token",data.token)
       setUser(data.user)
       setIsAuthenticated(true)
       toast.success("login successfully");

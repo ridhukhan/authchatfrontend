@@ -11,9 +11,14 @@ const AllUsers = () => {
   useEffect(() => {
     const fetchUsers = async () => {
       try {
+        const token = localStorage.getItem("token") 
         const { data } = await axios.get(
           "https://mernauth-06db.onrender.com/api/v1/user/users",
-          { withCredentials: true }
+          { withCredentials: true,
+            headers:{
+              Authorization:token ? `Bearer ${token}`:""
+            }
+           }
         )
         setUsers(data.users)
         console.log(data)

@@ -12,13 +12,18 @@ const Conversation = () => {
   const { id } = useParams()
   const latest = useRef(null)
   const { user: me } = useUser()  
+        const token = localStorage.getItem("token")
+
 const {socket}=useSocket()
   useEffect(() => {
     const fetchMessages = async () => {
       try {
         const { data } = await axios.get(
           `https://mernauth-06db.onrender.com/api/v1/user/getMessage/${id}`,
-          { withCredentials: true }
+          { withCredentials: true,
+             headers: { Authorization: token ? `Bearer ${token}` : "" } 
+
+           }
         )
         setMessages(data.messages)
       } catch (error) {
@@ -29,7 +34,7 @@ const {socket}=useSocket()
   }, [id])
 useEffect(()=>{
   if(socket){
-    socket.on("newMessase",(msg)=>{
+    socket.on("newMessage",(msg)=>{
       setMessages((prev)=>[...prev,msg])
     })
   }
@@ -45,7 +50,10 @@ useEffect(()=>{
     await axios.post(
       `https://mernauth-06db.onrender.com/api/v1/user/sendMessage/${id}`,
       { message: text },
-      { withCredentials: true }
+      { withCredentials: true,
+
+        headers:{Authorization:token?`Bearer ${token}`:""}
+       }
     )
 
     socket.emit("sendMessage",{
